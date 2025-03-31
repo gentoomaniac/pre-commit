@@ -103,6 +103,7 @@ def _install_hook_script(
 
         hook_file.write(before + TEMPLATE_START)
         hook_file.write(f'INSTALL_PYTHON={shlex.quote(sys.executable)}\n')
+        hook_file.write(f'PYTHONPATH="{os.getenv("PYTHONPATH", "")}\n"')
         args_s = shlex.join(args)
         hook_file.write(f'ARGS=({args_s})\n')
         hook_file.write(TEMPLATE_END + after)
